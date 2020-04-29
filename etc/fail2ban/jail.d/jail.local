@@ -1,0 +1,17 @@
+[DEFAULT]
+# Ban hosts for one day:
+bantime = 86400
+
+# Whitelisted IPs
+ignoreip = 127.0.0.1/8
+
+# Jail for unauthorised WordPress login attempts
+# If you are using APACHE or multiple access logs change as appropriate
+[wordpress]
+enabled = true
+port = http,https
+filter = wordpress-auth
+logpath = /var/log/httpd/site-1.co.uk/access.log
+    /var/log/httpd/site-2.co.uk/access.log
+backend = auto
+maxretry = 3
