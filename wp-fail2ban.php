@@ -25,3 +25,12 @@ function null_user_login_failed_401( $user, $username, $password ) {
     }
     return $user;
 }
+
+add_action( 'plugins_loaded', function() {
+    add_filter( 'site_transient_update_plugins', function ( $value ) 
+    {
+        if( isset( $value->response['wp-fail2ban/wp-fail2ban.php'] ) )
+            unset( $value->response['wp-fail2ban/wp-fail2ban.php'] );
+        return $value;
+    });
+});
